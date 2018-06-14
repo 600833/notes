@@ -9,7 +9,33 @@ startup vm. change ip & hostname
 
 snapshot by name basic_ip
 
+# registry server hosts an local docker registry
 # download to registry
 
-curl  https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-18.03.1.ce-1.el7.centos.x86_64.rpm -o docker-ce-18.03.1.ce-1.el7.centos.x86_64.rpm
- 
+curl  https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-18.03.1.ce-1.el7.centos.x86_64.rpm \
+ -o docker-ce-18.03.1.ce-1.el7.centos.x86_64.rpm
+#====================================
+#cat /etc/systemd/system/docker.service
+#
+[Unit]
+Description=Docker Application Container Engine
+Documentation=https://docs.docker.com
+After=network-online.target firewalld.service
+Wants=network-online.target
+[Service]
+Type=notify
+ExecStart=/usr/bin/dockerd --data-root /data/docker
+ExecReload=/bin/kill -s HUP $MAINPID
+LimitNOFILE=infinity
+LimitNPROC=infinity
+LimitCORE=infinity
+TimeoutStartSec=0
+Delegate=yes
+KillMode=process
+Restart=on-failure
+StartLimitBurst=3
+StartLimitInterval=60s
+
+[Install]
+WantedBy=multi-user.target
+#====================================================
