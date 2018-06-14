@@ -1,3 +1,10 @@
 
 
 disable swap: swapoff 
+
+
+create -f qcow2 -b base_centOS74.qcow2 server22.qcow2
+
+startup vm. change ip & hostname
+
+snapshot by name basic_ip
