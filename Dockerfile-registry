@@ -1,0 +1,2 @@
+FROM registry:2.5.2
+LABEL base_image=registry:2.5.2 build_at=20180614
