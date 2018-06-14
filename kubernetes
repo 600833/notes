@@ -24,7 +24,7 @@ After=network-online.target firewalld.service
 Wants=network-online.target
 [Service]
 Type=notify
-ExecStart=/usr/bin/dockerd --data-root /data/docker --insecure-registry registry.loc
+ExecStart=/usr/bin/dockerd --data-root /data/docker --insecure-registry registry.loc:5000
 ExecReload=/bin/kill -s HUP $MAINPID
 LimitNOFILE=infinity
 LimitNPROC=infinity
