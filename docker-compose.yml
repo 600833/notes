@@ -1,0 +1,24 @@
+version: '3'
+networks:
+  net1:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.28.1.0/16
+services:
+  registry:
+    image: registry.loc:5000/registry:20180614
+    networks:
+    - net1
+    ports:
+    - 5000:5000
+    volumes:
+    - "${PWD}/vols/registry/data:/var/lib/registry"
+    container_name: registry
+    hostname: registry
+    build:
+      context: ./registry
+      dockerfile: Dockerfile-registry
+      args:
+        buildno: 1
