@@ -1,3 +1,7 @@
 backup etcd
 docker exec -it 9e86c7c5c885 sh to etcd
 etcdctl backup --data-dir /var/lib/etcd/ --backup-dir /etc/kubernetes/pki/etcd/backup
+
+
+about pause container
+https://www.ianlewis.org/en/almighty-pause-container
